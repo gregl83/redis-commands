@@ -1,0 +1,8 @@
+# Operating System
+*.swp
+pids
+*.pid
+*.seed
+
+# IDEs
+.idea/
