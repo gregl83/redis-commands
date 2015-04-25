@@ -29,7 +29,29 @@ todo
 
 **Examples**
 
-todo
+```bash
+> redis-cli script load "$(cat /path/to/redis-commands/src/zrpoplpush.lua)"
+"a34f28bab1fdcd6ca9effe3ce21f797c4873024f"
+> redis-cli
+redis> ZADD source 1 "one"
+(integer) 1
+redis> ZADD source 2 "two"
+(integer) 1
+redis> ZCARD source
+(integer) 2
+redis> ZCARD destination
+(integer) 0
+redis> EVALSHA a34f28bab1fdcd6ca9effe3ce21f797c4873024f 2 source destination
+1) "one"
+2) "1"
+redis> EVALSHA a34f28bab1fdcd6ca9effe3ce21f797c4873024f 2 source destination
+1) "two"
+2) "2"
+redis> ZCARD source
+(integer) 0
+redis> ZCARD destination
+(integer) 2
+```
 
 ## License
 
