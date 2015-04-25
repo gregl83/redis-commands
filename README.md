@@ -17,7 +17,9 @@ For more information on Redis benchmarks see the [Benchmarks Documentation](http
 
 ## Commands
 
-### Lists
+### Priority Lists
+
+Custom Redis data type that is comprised of a set of lists representing priority levels (Critical, High, Medium, and Low).
 
 #### PRPOPLPUSH source destination
 
@@ -32,6 +34,8 @@ todo
 todo
 
 ### Sorted Sets
+
+Native Redis data type. [Sorted Set command list](http://redis.io/commands#sorted_set).
 
 #### ZLPOPRPUSH source destination
 
