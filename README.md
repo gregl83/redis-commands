@@ -1,16 +1,18 @@
 # redis-commands
 
-## Sorted Sets
+## Commands
 
-### ZRPOPLPUSH source destination
+### Sorted Sets
 
-todo
-
-#### Return value
+#### ZRPOPLPUSH source destination
 
 todo
 
-#### Examples
+**Return value**
+
+todo
+
+**Examples**
 
 todo
 
