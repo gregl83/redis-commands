@@ -17,6 +17,20 @@ For more information on Redis benchmarks see the [Benchmarks Documentation](http
 
 ## Commands
 
+### Lists
+
+#### PRPOPLPUSH source destination
+
+todo
+
+**Return values**
+
+[Bulk string reply](http://redis.io/topics/protocol#bulk-string-reply): the element being popped and pushed.
+
+**Examples**
+
+todo
+
 ### Sorted Sets
 
 #### ZLPOPRPUSH source destination
