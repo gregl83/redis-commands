@@ -29,7 +29,7 @@ todo
 
 **Examples**
 
-```bash
+```
 > redis-cli script load "$(cat /path/to/redis-commands/src/zrpoplpush.lua)"
 "a34f28bab1fdcd6ca9effe3ce21f797c4873024f"
 > redis-cli
