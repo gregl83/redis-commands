@@ -19,8 +19,8 @@ For more information on Redis benchmarks see the [Benchmarks Documentation](http
 
 ### Priority Lists
 
-Custom Redis data type that is comprised of a set of lists representing priority levels (Critical, High, Medium, and Low). Each priority level
-is a native Redis List with all the standard [List Commands](http://redis.io/commands#list).
+Custom Redis data type that is comprised of a keyspace of lists one for each priority level (Critical, High, Medium, and Low). Priority level lists 
+are native Redis Lists with all the standard [List Commands](http://redis.io/commands#list).
 
 #### PLPUSH key priority value [value ...]
 
