@@ -13,9 +13,7 @@ end
 insert(results, KEYS[1])
 insert(results, argv1)
 
-local initialValue = argv1 + 1
-local endValue = initialValue + argv2
-for member = initialValue, endValue, 1 do
+for member = 1, argv2, 1 do
     rcall('rpush', KEYS[2], member)
 end
 insert(results, KEYS[2])
