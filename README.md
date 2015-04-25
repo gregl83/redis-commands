@@ -19,9 +19,14 @@ For more information on Redis benchmarks see the [Redis Benchmarks Documentation
 
 ### Sorted Sets
 
-#### ZRPOPLPUSH source destination
+#### ZLPOPRPUSH source destination
 
-todo
+Atomically returns and removes the first element (head) of the sorted set stored at source, and pushes the element at the last element (tail) of the sorted set stored 
+at destination. Sorted Set rules still apply.
+For example: consider source holding the sorted set a 1, b 2, c 3, and destination holding the sorted set x 4, y 5, z 6. Executing ZLPOPRPUSH results in source holding b 2, c 3 and destination 
+holding a 1, x 4, y 5, z 6.
+If source does not exist, the value nil is returned and no operation is performed. If source and destination are the same, the operation is equivalent to 
+removing the first element from the sorted set and pushing it as last element of the sorted set, so it can be considered as a sorted set rotation command.
 
 **Return value**
 
@@ -30,7 +35,7 @@ todo
 **Examples**
 
 ```
-> redis-cli script load "$(cat /path/to/redis-commands/src/zrpoplpush.lua)"
+> redis-cli script load "$(cat /path/to/redis-commands/src/zlpoprpush.lua)"
 "a34f28bab1fdcd6ca9effe3ce21f797c4873024f"
 > redis-cli
 redis> ZADD source 1 "one"
