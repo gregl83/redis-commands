@@ -25,7 +25,7 @@ todo
 
 **Return value**
 
-todo
+[Array reply](http://redis.io/topics/protocol#array-reply): element popped and pushed with score.
 
 **Examples**
 
