@@ -2,20 +2,26 @@
 
 SCRIPT_DIR=$(readlink -f $(dirname ${BASH_SOURCE[0]}))
 PACKAGE_DIR=$(dirname $SCRIPT_DIR)
-SRC="$PACKAGE_DIR/src/zrpoplpush.lua"
+SRC="$PACKAGE_DIR/src/$1.lua"
+
+if [ ! -e "$SRC" ]
+then
+    echo "script path argument missing"
+    exit
+fi
 
 SHA=`redis-cli script load "$(cat $SRC)"`
 
-if [ -n "$1" ]
+if [ -n "$2" ]
 then
-    CLIENTS=$1
+    CLIENTS=$2
 else
     CLIENTS=50
 fi
 
-if [ -n "$2" ]
+if [ -n "$3" ]
 then
-    REQUESTS=$2
+    REQUESTS=$3
 else
     REQUESTS=1000000
 fi
