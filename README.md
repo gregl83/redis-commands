@@ -13,3 +13,7 @@ todo
 #### Examples
 
 todo
+
+## License
+
+MIT
