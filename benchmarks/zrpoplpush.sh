@@ -4,8 +4,20 @@ SCRIPT_DIR=$(readlink -f $(dirname ${BASH_SOURCE[0]}))
 PACKAGE_DIR=$(dirname $SCRIPT_DIR)
 SRC="$PACKAGE_DIR/src/zrpoplpush.lua"
 
-ZRPOPLPUSH=$(cat $SRC)
+SHA=`redis-cli script load "$(cat $SRC)"`
 
-# todo get the benchmark script to run for src
+if [ -n "$1" ]
+then
+    CLIENTS=$1
+else
+    CLIENTS=50
+fi
 
-redis-benchmark -c 50 -n 1000000 eval $($ZRPOPLPUSH) queud processing
+if [ -n "$2" ]
+then
+    REQUESTS=$2
+else
+    REQUESTS=1000000
+fi
+
+redis-benchmark -c $CLIENTS -n $REQUESTS evalsha $SHA 2 queued processing
