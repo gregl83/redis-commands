@@ -22,13 +22,13 @@ For more information on Redis benchmarks see the [Benchmarks Documentation](http
 Custom Redis data type that is comprised of a set of lists representing priority levels (Critical, High, Medium, and Low). Each priority level
 is a native Redis List with all the standard [List Commands](http://redis.io/commands#list).
 
-#### PLPUSH key value [value ...]
+#### PLPUSH key priority value [value ...]
 
 todo
 
 **Return values**
 
-[Bulk string reply](http://redis.io/topics/protocol#bulk-string-reply): the element being popped and pushed.
+[Integer reply](http://redis.io/topics/protocol#integer-reply): the length of the list after the push operations.
 
 **Examples**
 
