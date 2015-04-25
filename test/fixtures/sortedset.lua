@@ -1,15 +1,29 @@
+local tonumber = tonumber
+local random = math.random
+local insert = table.insert
 local rcall = redis.call
 local results = {}
 
+local member
+local argv1 = tonumber(ARGV[1])
+local argv2 = tonumber(ARGV[2])
+local argv3 = tonumber(ARGV[3])
 
-for member=0, ARG[1], 1 do
-    rcall('zadd', KEY[1], member)
+for member = 1, argv1, 1 do
+    local score = random(1, argv3)
+    rcall('zadd', KEYS[1], score, member)
 end
-results[KEY[1]] = member
+insert(results, KEYS[1])
+insert(results, argv1)
 
-for member=member, ARG[2], 1 do
-    rcall('zadd', KEY[1], member)
+local initialValue = argv1 + 1
+local endValue = initialValue + argv2
+for member = initialValue, endValue, 1 do
+    local score = random(1, argv3)
+    rcall('zadd', KEYS[2], score, member)
 end
-results[KEY[2]] = member - results[KEY[1]]
+insert(results, KEYS[2])
+insert(results, argv2)
+insert(results, argv3)
 
 return results
