@@ -12,18 +12,18 @@ fi
 
 SHA=`redis-cli script load "$(cat $SRC)"`
 
-if [ -n "$2" ]
+if [ -n "$4" ]
 then
-    CLIENTS=$2
+    CLIENTS=$4
 else
     CLIENTS=50
 fi
 
-if [ -n "$3" ]
+if [ -n "$5" ]
 then
-    REQUESTS=$3
+    REQUESTS=$5
 else
     REQUESTS=1000000
 fi
 
-redis-benchmark -c $CLIENTS -n $REQUESTS evalsha $SHA 2 queued processing
+redis-benchmark -c $CLIENTS -n $REQUESTS evalsha $SHA 2 $2 $3
