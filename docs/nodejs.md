@@ -1,14 +1,18 @@
 # redis-commands [nodejs]
 
-todo
+Redis Commands for NodeJS
 
 ## Requirements
 
-todo
+- Redis
+- NodeJS
+- NPM
+
+See `./package.json`
 
 ## Installation
 
-todo
+    $ npm install n-redis-commands
 
 ## Usage
 

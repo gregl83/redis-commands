@@ -17,7 +17,7 @@ For more information on Redis benchmarks see the [Benchmarks Documentation](http
 
 ## Usage
 
-The Lua scripts are located in the ./src directory. It is possible to use them directly or use a language/environment implementation.
+Redis Lua scripts are located in the `./src` directory. Use them directly or use a language/environment implementation.
 
 ### Language or Environment Documentation
 
