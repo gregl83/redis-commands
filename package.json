@@ -1,0 +1,34 @@
+{
+  "name": "n-redis-commands",
+  "version": "0.1.0",
+  "description": "Redis Commands for NodeJS",
+  "author": "Gregory Langlais",
+  "private": false,
+  "keywords": [
+    "redis",
+    "commands",
+    "plpush",
+    "prpoplpush",
+    "zlpoprpush"
+  ],
+  "main": "src/nodejs/commands.js",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gregl83/redis-commands.git"
+  },
+  "bugs": {
+    "url": "https://github.com/gregl83/redis-commands/issues"
+  },
+  "homepage": "https://github.com/gregl83/redis-commands",
+  "scripts": {
+    "test": "mocha --require test/support/env --reporter spec --bail --check-leaks test/nodejs"
+  },
+  "devDependencies": {
+    "mocha": "2.2.x",
+    "should": "5.2.x",
+    "mockery": "1.4.X",
+    "sinon": "1.14.x"
+  },
+  "dependencies": {},
+  "license": "MIT"
+}

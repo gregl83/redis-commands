@@ -6,3 +6,15 @@ pids
 
 # IDEs
 .idea/
+
+# Coverage Testing
+lib-cov
+coverage
+
+# NPM
+build/Release
+node_modules
+
+# Application Logs
+log/*
+*.log
