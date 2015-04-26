@@ -16,7 +16,13 @@ See `./package.json`
 
 ## Usage
 
-todo
+```js
+var redisCommands = require('n-redis-commands');
+
+var plpushSHA = redisCommands('plpush');
+
+// use plpushSHA as arg to EVALSHA with supporting Redis Client
+```
 
 ## License
 
