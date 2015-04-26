@@ -80,6 +80,10 @@ holding a 1, x 4, y 5, z 6.
 If source does not exist, the value nil is returned and no operation is performed. If source and destination are the same, the operation is equivalent to 
 removing the first element from the sorted set and pushing it as last element of the sorted set, so it can be considered as a sorted set rotation command.
 
+**Time complexity**
+
+(coming) early testing revealed that when compared to the O(1) RPOPLPUSH List function with 10M member sets requests per second was reduced by 66%
+
 **Return value**
 
 [Array reply](http://redis.io/topics/protocol#array-reply): element popped and pushed with score.
