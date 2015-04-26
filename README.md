@@ -19,13 +19,13 @@ For more information on Redis benchmarks see the [Benchmarks Documentation](http
 
 ### Priority Lists
 
-Custom Redis data type that is comprised of a keyspace of lists one for each priority level (Critical, High, Medium, and Low). Priority level lists 
-are native Redis Lists with all the standard [List Commands](http://redis.io/commands#list).
+Custom Redis data type that is comprised of a keyspace of lists that are ordered by priority. Priority lists are native Redis Lists with all the 
+standard [List Commands](http://redis.io/commands#list).
 
 #### PLPUSH key priority value [value ...]
 
-Insert all the specified values at the head of the list stored at key priority. If key priority does not exist, it is created as empty list before performing the push 
-operations. When key holds a value that is not a list, an error is returned.
+Insert all the specified values at the head of the list stored at key:priority. If key:priority does not exist, it is created as an empty list before performing 
+the push operations. When key:priority holds a value that is not a list, an error is returned.
 
 It is possible to push multiple elements using a single command call just specifying multiple arguments at the end of the command. Elements are inserted 
 one after the other to the head of the list, from the leftmost element to the rightmost element. So for instance the command PLPUSH mylist high a b c will result 
@@ -53,13 +53,13 @@ redis> LRANGE mylist:high 0 -1
 2) "world"
 ```
 
-#### PRPOPLPUSH source destination
+#### PRPOPLPUSH source destination priorityList [priorityList ...]
 
 todo
 
 **Time complexity**
 
-O(1 * N) where N is the number of priority lists to try by the operation (max of 4).
+O(1 * N) where N is the number of priority lists to try by the operation.
 
 **Return values**
 
