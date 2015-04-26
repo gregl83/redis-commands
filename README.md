@@ -19,7 +19,7 @@ For more information on Redis benchmarks see the [Benchmarks Documentation](http
 
 ### Priority Lists
 
-Custom Redis data type that is comprised of a keyspace of lists that are ordered by priority. Priority lists are native Redis Lists with all the 
+Custom Redis data type that is comprised of a keyspace of lists that are ordered by priority. Priority lists (plist) are native Redis Lists with all the 
 standard [List Commands](http://redis.io/commands#list).
 
 #### PLPUSH key priority value [value ...]
@@ -53,9 +53,17 @@ redis> LRANGE mylist:high 0 -1
 2) "world"
 ```
 
-#### PRPOPLPUSH source destination priorityList [priorityList ...]
+#### PRPOPLPUSH source destination plist [plist ...]
 
-todo
+Atomically returns and removes the last element (tail) of the priority list (plist) stored at source, and pushes the element at the first element (head) of the plist stored at destination.
+
+For example: consider source holding the plist critical a,b,c, and destination holding the list critical x,y,z. Executing PRPOPLPUSH results in source:critical holding a,b and 
+destination:critical holding c,x,y,z.
+
+If source does not exist, the value nil is returned and no operation is performed. If source and destination are the same, the operation is equivalent to removing the last element from the 
+list and pushing it as first element of the list, so it can be considered as a list rotation command.
+
+Most use cases will provide multiple plists in which case executing PRPOPLPUSH will attempt the operation on each plist in order until success.
 
 **Time complexity**
 
@@ -67,7 +75,35 @@ O(1 * N) where N is the number of priority lists to try by the operation.
 
 **Examples**
 
-todo
+```
+> redis-cli script load "$(cat /path/to/redis-commands/src/prpoplpush.lua)"
+"958b2c29c81d76dc6d5978e5255a16a9782e6a76"
+> redis-cli
+redis> LPUSH source:high "one"
+(integer) 1
+redis> LPUSH source:medium "two"
+(integer) 1
+redis> LLEN source:high
+(integer) 1
+redis> LLEN source:medium
+(integer) 1
+redis> LLEN destination:high
+(integer) 0
+redis> LLEN destination:medium
+(integer) 0
+redis> EVALSHA 958b2c29c81d76dc6d5978e5255a16a9782e6a76 2 source destination critical high medium low
+"one"
+redis> EVALSHA 958b2c29c81d76dc6d5978e5255a16a9782e6a76 2 source destination critical high medium low
+"two"
+redis> LLEN source:high
+(integer) 0
+redis> LLEN source:medium
+(integer) 0
+redis> LLEN destination:high
+(integer) 1
+redis> LLEN destination:medium
+(integer) 1
+```
 
 ### Sorted Sets
 
