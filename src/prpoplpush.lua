@@ -1,13 +1,13 @@
 local result
-local next = next
 local rcall = redis.call
+local priorityLists = {'critical', 'high', 'medium', 'low'}
 
-local member = rcall('zrange', KEYS[1], 0, 0, 'WITHSCORES')
-result = member
-
-if nil ~= next(member) then
-    rcall('zadd', KEYS[2], member[2], member[1])
-    rcall('zremrangebyrank', KEYS[1], 0, 0)
+for key, val in pairs(priorityLists) do
+    if nil == result then
+        local source = KEYS[1] .. ':' .. val
+        local destination = KEYS[2] .. ':' .. val
+        result = rcall('rpoplpush', source, destination)
+    end
 end
 
 return result

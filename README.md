@@ -57,6 +57,10 @@ redis> LRANGE mylist:high 0 -1
 
 todo
 
+**Time complexity**
+
+O(1 * N) where N is the number of priority lists to try by the operation (max of 4).
+
 **Return values**
 
 [Bulk string reply](http://redis.io/topics/protocol#bulk-string-reply): the element being popped and pushed.
