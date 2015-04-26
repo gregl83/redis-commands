@@ -5,7 +5,7 @@ Redis Commands for NodeJS
 ## Requirements
 
 - Redis
-- NodeJS
+- NodeJS v0.12.x or higher
 - NPM
 
 See `./package.json`

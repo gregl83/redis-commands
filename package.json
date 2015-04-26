@@ -21,13 +21,17 @@
   },
   "homepage": "https://github.com/gregl83/redis-commands",
   "scripts": {
-    "test": "mocha --require test/support/env --reporter spec --bail --check-leaks test/nodejs"
+    "test": "mocha --require test/nodejs/support/env --reporter spec --bail --check-leaks test/nodejs",
+    "test-ci": "istanbul cover node_modules/mocha/bin/_mocha --report lcovonly -- --require test/nodejs/support/env --reporter spec --check-leaks test/nodejs",
+    "test-cov": "istanbul cover node_modules/mocha/bin/_mocha -- --require test/nodejs/support/env --reporter dot --check-leaks test/nodejs"
   },
   "devDependencies": {
     "mocha": "2.2.x",
     "should": "5.2.x",
     "mockery": "1.4.X",
-    "sinon": "1.14.x"
+    "sinon": "1.14.x",
+    "coveralls": "2.11.x",
+    "istanbul": "0.3.x"
   },
   "dependencies": {},
   "license": "MIT"
