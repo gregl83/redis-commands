@@ -15,7 +15,17 @@ this package.
 
 For more information on Redis benchmarks see the [Benchmarks Documentation](http://redis.io/topics/benchmarks).
 
+## Usage
+
+The Lua scripts are located in the ./src directory. It is possible to use them directly or use a language/environment implementation.
+
+### Language or Environment Documentation
+
+- [NodeJS](docs/nodejs.md)
+
 ## Commands
+
+Redis Lua scripts provided by this package.
 
 ### Priority Lists
 
