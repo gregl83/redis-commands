@@ -48,7 +48,7 @@ redis> EVALSHA da39a3ee5e6b4b0d3255bfef95601890afd80709 2 mylist high "hello"
 (integer) 1
 redis> EVALSHA da39a3ee5e6b4b0d3255bfef95601890afd80709 2 mylist high "world"
 (integer) 1
-redis> LRANGE mylist 0 -1
+redis> LRANGE mylist:high 0 -1
 1) "hello"
 2) "world"
 ```
