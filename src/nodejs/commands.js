@@ -13,7 +13,7 @@ var child_process = require('child_process');
  * @sync
  */
 module.exports = function(command) {
-  var commandPath = path.resolve('src/' + command + '.lua');
+  var commandPath = path.resolve(__dirname, '..', command + '.lua');
 
   var commandSource = fs.readFileSync(commandPath, {encoding: 'utf8'});
 
