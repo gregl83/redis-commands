@@ -1,13 +1,12 @@
 local result
-local pairs = pairs
 local rcall = redis.call
+local i = 1
 
-for key, val in pairs(ARGV) do
-    if not result then
-        local source = KEYS[1] .. ':' .. val
-        local destination = KEYS[2] .. ':' .. val
-        result = rcall('rpoplpush', source, destination)
-    end
+while not result and ARGV[i] do
+    local source = KEYS[1] .. ':' .. ARGV[i]
+    local destination = KEYS[2] .. ':' .. ARGV[i]
+    result = rcall('rpoplpush', source, destination)
+    i = i + 1
 end
 
 return result
