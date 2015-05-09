@@ -65,6 +65,38 @@ redis> LRANGE mylist:high 0 -1
 2) "world"
 ```
 
+#### PLLEN key plist [plist ...]
+
+Returns the length of the plist(s) for a key. If key does not exist, it is interpreted as an empty plist and 0 is returned. An error is returned when the value stored at key is not a plist.
+
+**Time complexity**
+
+O(1 * N) where N is the number of priority lists to try by the operation.
+
+**Return values**
+
+[Integer reply](http://redis.io/topics/protocol#integer-reply): the length of the list after the push operations.
+
+**Examples**
+
+```
+> redis-cli script load "$(cat /path/to/redis-commands/src/pllen.lua)"
+"09ca92a0ded4a33398413bb4a22a3f1ef45c0c89"
+redis> LPUSH mylist:critical "hello"
+(integer) 1
+redis> LPUSH mylist:low "world"
+(integer) 1
+redis> EVALSHA 09ca92a0ded4a33398413bb4a22a3f1ef45c0c89 1 mylist critical high medium low
+1) "critical"
+2) (integer) 1
+3) "high"
+4) (integer) 0
+5) "medium"
+6) (integer) 0
+7) "low"
+8) (integer) 1
+```
+
 #### PRPOPLPUSH source destination plist [plist ...]
 
 Atomically returns and removes the last element (tail) of the priority list (plist) stored at source, and pushes the element at the first element (head) of the plist stored at destination.
