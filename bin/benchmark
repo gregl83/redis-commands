@@ -12,18 +12,4 @@ fi
 
 SHA=`redis-cli script load "$(cat $SRC)"`
 
-if [ -n "$4" ]
-then
-    CLIENTS=$4
-else
-    CLIENTS=50
-fi
-
-if [ -n "$5" ]
-then
-    REQUESTS=$5
-else
-    REQUESTS=1000000
-fi
-
-redis-benchmark -c $CLIENTS -n $REQUESTS evalsha $SHA 2 $2 $3
+redis-benchmark -c $2 -n $3 evalsha $SHA "${@:4}"
