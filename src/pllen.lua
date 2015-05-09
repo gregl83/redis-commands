@@ -1,12 +1,13 @@
 local result = {}
 local insert = table.insert
-local pairs = pairs
 local rcall = redis.call
+local i = 2
 
-for key, val in pairs(ARGV) do
-    local source = KEYS[1] .. ':' .. val
-    insert(result, val)
+while KEYS[i] do
+    local source = KEYS[1] .. ':' .. KEYS[i]
+    insert(result, KEYS[i])
     insert(result, rcall('llen', source))
+    i = i + 1
 end
 
 return result

@@ -34,10 +34,10 @@ Redis Lua scripts provided by this package.
 Custom Redis data type that is comprised of a keyspace of lists that are ordered by priority. Priority lists (plist) are native Redis Lists with all the 
 standard [List Commands](http://redis.io/commands#list).
 
-#### PLPUSH key priority value [value ...]
+#### PLPUSH key plist value [value ...]
 
-Insert all the specified values at the head of the list stored at key:priority. If key:priority does not exist, it is created as an empty list before performing 
-the push operations. When key:priority holds a value that is not a list, an error is returned.
+Insert all the specified values at the head of the plist stored at key:plist. If key:plist does not exist, it is created as an empty list before performing 
+the push operations. When key:plist holds a value that is not a list, an error is returned.
 
 It is possible to push multiple elements using a single command call just specifying multiple arguments at the end of the command. Elements are inserted 
 one after the other to the head of the list, from the leftmost element to the rightmost element. So for instance the command PLPUSH mylist high a b c will result 
@@ -75,7 +75,7 @@ O(1 * N) where N is the number of priority lists to try by the operation.
 
 **Return values**
 
-[Integer reply](http://redis.io/topics/protocol#integer-reply): the length of the list after the push operations.
+[Array reply](http://redis.io/topics/protocol#array-reply): list of plist(s) in the specified order with list length.
 
 **Examples**
 
@@ -86,7 +86,7 @@ redis> LPUSH mylist:critical "hello"
 (integer) 1
 redis> LPUSH mylist:low "world"
 (integer) 1
-redis> EVALSHA 09ca92a0ded4a33398413bb4a22a3f1ef45c0c89 1 mylist critical high medium low
+redis> EVALSHA 09ca92a0ded4a33398413bb4a22a3f1ef45c0c89 5 mylist critical high medium low
 1) "critical"
 2) (integer) 1
 3) "high"
@@ -99,7 +99,8 @@ redis> EVALSHA 09ca92a0ded4a33398413bb4a22a3f1ef45c0c89 1 mylist critical high m
 
 #### PRPOPLPUSH source destination plist [plist ...]
 
-Atomically returns and removes the last element (tail) of the priority list (plist) stored at source, and pushes the element at the first element (head) of the plist stored at destination.
+Atomically returns and removes the last element (tail) of the priority list (plist) stored at source:plist, and pushes the element at the first element (head) of the plist stored at 
+destination:plist.
 
 For example: consider source holding the plist critical a,b,c, and destination holding the list critical x,y,z. Executing PRPOPLPUSH results in source:critical holding a,b and 
 destination:critical holding c,x,y,z.
@@ -135,9 +136,9 @@ redis> LLEN destination:high
 (integer) 0
 redis> LLEN destination:medium
 (integer) 0
-redis> EVALSHA 958b2c29c81d76dc6d5978e5255a16a9782e6a76 2 source destination critical high medium low
+redis> EVALSHA 958b2c29c81d76dc6d5978e5255a16a9782e6a76 6 source destination critical high medium low
 "one"
-redis> EVALSHA 958b2c29c81d76dc6d5978e5255a16a9782e6a76 2 source destination critical high medium low
+redis> EVALSHA 958b2c29c81d76dc6d5978e5255a16a9782e6a76 6 source destination critical high medium low
 "two"
 redis> LLEN source:high
 (integer) 0
