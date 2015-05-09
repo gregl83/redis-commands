@@ -1,6 +1,6 @@
 {
   "name": "n-redis-commands",
-  "version": "0.1.2",
+  "version": "0.1.3",
   "description": "Redis Commands for NodeJS",
   "author": "Gregory Langlais",
   "private": false,
