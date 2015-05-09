@@ -67,7 +67,7 @@ redis> LRANGE mylist:high 0 -1
 
 #### PLLEN key plist [plist ...]
 
-Returns the lengths of the plist(s) for each key:plist. If key:list does not exist, it is interpreted as an empty plist and 0 is returned. An error is returned when the value stored at key:plist is not a list.
+Returns the lengths of the plist(s) for each key:plist. If key:plist does not exist, it is interpreted as an empty plist and 0 is returned. An error is returned when the value stored at key:plist is not a list.
 
 **Time complexity**
 
