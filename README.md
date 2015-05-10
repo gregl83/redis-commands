@@ -97,6 +97,36 @@ redis> EVALSHA 09ca92a0ded4a33398413bb4a22a3f1ef45c0c89 5 mylist critical high m
 8) (integer) 1
 ```
 
+#### PLREMLPUSH source destination plist count value
+
+Removes the first count occurrences of elements equal to value from the plist stored at source:plist and pushes the elements at the first element (head) of the plist stored 
+at destination:plist.
+
+The count argument influences the operation in the following ways:
+
+- count > 0: Remove elements equal to value moving from head to tail.
+- count < 0: Remove elements equal to value moving from tail to head.
+- count = 0: Remove all elements equal to value.
+
+For example, PLREMLPUSH source destination medium -2 "hello" will remove the last two occurrences of "hello" in the plist stored at source:plist and push them at the head of plist at 
+destination:plist.
+
+Note that non-existing keys are treated like empty lists, so when key does not exist, the command will always return 0.
+
+**Time complexity**
+
+O(N) where N is the length of the list.
+
+**Return values**
+
+[Integer reply](http://redis.io/topics/protocol#integer-reply): the number of removed elements.
+
+**Examples**
+
+```
+> todo
+```
+
 #### PRPOPLPUSH source destination plist [plist ...]
 
 Atomically returns and removes the last element (tail) of the priority list (plist) stored at source:plist, and pushes the element at the first element (head) of the plist stored at 
