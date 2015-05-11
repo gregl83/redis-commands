@@ -111,7 +111,7 @@ The count argument influences the operation in the following ways:
 For example, PLREMLPUSH source destination medium -2 "hello" will remove the last two occurrences of "hello" in the plist stored at source:plist and push them at the head of plist at 
 destination:plist.
 
-Note that non-existing keys are treated like empty lists, so when key does not exist, the command will always return 0.
+Note that non-existing keys are treated like empty plists, so when key does not exist, the command will always return 0.
 
 **Time complexity**
 
@@ -124,7 +124,20 @@ O(N) where N is the length of the list.
 **Examples**
 
 ```
-> todo
+> redis-cli script load "$(cat /path/to/redis-commands/src/plremlpush.lua)"
+"58076efaa93d06bd0d68688c9bab745696d5cb18"
+redis> LPUSH source:critical "string"
+(integer) 1
+redis> LPUSH source:medium "string"
+(integer) 1
+redis> LPUSH source:critical "string"
+(integer) 2
+redis> EVALSHA 58076efaa93d06bd0d68688c9bab745696d5cb18 3 source destination critical 0 "string"
+(integer) 2
+redis> LLEN source:critical
+(integer) 0
+redis> LLEN destination:critical
+(integer) 2
 ```
 
 #### PRPOPLPUSH source destination plist [plist ...]
