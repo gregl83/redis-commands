@@ -99,7 +99,7 @@ redis> EVALSHA 09ca92a0ded4a33398413bb4a22a3f1ef45c0c89 5 mylist critical high m
 
 #### PLREMLPUSH source destination plist count value
 
-Removes the first count occurrences of elements equal to value from the plist stored at source:plist and pushes the elements at the first element (head) of the plist stored 
+Removes the first count occurrences of elements equal to value from the plist stored at source:plist and pushes the elements at the head of the plist stored 
 at destination:plist.
 
 The count argument influences the operation in the following ways:
