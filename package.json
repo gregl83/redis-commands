@@ -10,6 +10,7 @@
     "plpush",
     "pllen",
     "prpoplpush",
+    "zrangeincrby",
     "zlpoprpush"
   ],
   "main": "src/nodejs/commands.js",
