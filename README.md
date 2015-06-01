@@ -287,6 +287,12 @@ redis> ZCARD destination
 (integer) 2
 ```
 
+## Command Requests
+
+Cannot find the command you need?
+
+[File an Enhancement/Issue](https://github.com/gregl83/redis-commands/issues).
+
 ## License
 
 MIT
