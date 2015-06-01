@@ -223,19 +223,19 @@ O(log(N)+M) with N being the number of elements in the sorted set and M the numb
 > redis-cli script load "$(cat /path/to/redis-commands/src/lrangeincrby.lua)"
 "009e91e9caab43c31bcc48843ca05d8bb951eb7d"
 > redis-cli
-redis> ZADD myset 1 "one"
+redis> ZADD myzset 1 "one"
 (integer) 1
-redis> ZADD myset 2 "two"
+redis> ZADD myzset 2 "two"
 (integer) 1
-redis> ZRANGE myset 0 1 WITHSCORES
+redis> ZRANGE myzset 0 1 WITHSCORES
 1) "one"
 2) "1"
 3) "two"
 4) "2"
-redis> EVALSHA 009e91e9caab43c31bcc48843ca05d8bb951eb7d 1 myset 0 0 1 WITHSCORES
+redis> EVALSHA 009e91e9caab43c31bcc48843ca05d8bb951eb7d 1 myzset 0 0 1 WITHSCORES
 1) "one"
 2) "2"
-redis> ZRANGE myset 0 1 WITHSCORES
+redis> ZRANGE myzset 0 1 WITHSCORES
 1) "one"
 2) "2"
 3) "two"
