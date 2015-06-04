@@ -220,7 +220,7 @@ O(log(N)+M) with N being the number of elements in the sorted set and M the numb
 **Examples**
 
 ```
-> redis-cli script load "$(cat /path/to/redis-commands/src/lrangeincrby.lua)"
+> redis-cli script load "$(cat /path/to/redis-commands/src/zrangeincrby.lua)"
 "009e91e9caab43c31bcc48843ca05d8bb951eb7d"
 > redis-cli
 redis> ZADD myzset 1 "one"
