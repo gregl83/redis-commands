@@ -1,8 +1,7 @@
 # redis-commands
 
-Redis provides a lot of functionality for data types "out of the box." Additional functions can be written in the using Lua scripts
-for cases where there isn't a "vanilla" function that fits. Redis also uses the Lua interpreter to execute it's native commands. Scripts
-are executed atomically (blocking).
+Redis provides a lot of functionality for data types "out of the box." Additional functions can be written via Lua scripts for cases where there isn't 
+a "vanilla" function that fits. Redis also uses the Lua interpreter to execute it's native commands. Scripts are executed atomically (blocking).
 
 For more information on executing Lua scripts with Redis see the [Eval Command Documentation](http://redis.io/commands/eval).
 
