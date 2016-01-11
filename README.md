@@ -192,6 +192,34 @@ redis> LLEN destination:medium
 (integer) 1
 ```
 
+### Hashes
+
+Native Redis data type. [Hash Commands](http://redis.io/commands#hash).
+
+#### HGETRAND key
+
+Returns a random value in the hash stored at key.
+
+**Time complexity**
+
+O(N) where N is the size of the hash.
+
+**Return value**
+
+[Bulk string reply](http://redis.io/topics/protocol#bulk-string-reply): the random value, or nil when key does not exist.
+
+**Examples**
+
+```
+> redis-cli script load "$(cat /path/to/redis-commands/src/hgetrand.lua)"
+"99b0cb2e5000a1420061cc1c1faf1ff241eb9129"
+> redis-cli
+redis> HMSET myhash one "alpha" two "beta" three "charlie"
+OK
+redis> EVALSHA 99b0cb2e5000a1420061cc1c1faf1ff241eb9129 1 myhash
+"beta"
+```
+
 ### Sorted Sets
 
 Native Redis data type. [Sorted Set Commands](http://redis.io/commands#sorted_set).
