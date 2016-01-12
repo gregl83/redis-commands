@@ -220,6 +220,30 @@ redis> EVALSHA 99b0cb2e5000a1420061cc1c1faf1ff241eb9129 1 myhash
 "beta"
 ```
 
+#### HMGETRAND key count
+
+Returns a list of random values in the hash stored at key.
+
+List size equals count or hash length when count is greater than hash length.
+
+**Return value**
+
+[Array reply](http://redis.io/topics/protocol#array-reply): list of random values.
+
+**Examples**
+
+```
+> redis-cli script load "$(cat /path/to/redis-commands/src/hmgetrand.lua)"
+"b1a66b8bec2a37a0e96c3ff0021e725ffae316a5"
+> redis-cli
+redis> HMSET myhash one "alpha" two "beta" three "charlie"
+OK
+redis> EVALSHA b1a66b8bec2a37a0e96c3ff0021e725ffae316a5 1 myhash 3
+1) "charlie"
+2) "beta"
+3) "alpha"
+```
+
 ### Sorted Sets
 
 Native Redis data type. [Sorted Set Commands](http://redis.io/commands#sorted_set).
