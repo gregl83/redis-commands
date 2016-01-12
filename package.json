@@ -1,6 +1,6 @@
 {
   "name": "n-redis-commands",
-  "version": "0.3.0",
+  "version": "0.4.0",
   "description": "Redis Commands for NodeJS",
   "author": "Gregory Langlais",
   "private": false,
@@ -11,7 +11,9 @@
     "pllen",
     "prpoplpush",
     "zrangeincrby",
-    "zlpoprpush"
+    "zlpoprpush",
+    "hgetrand",
+    "hmgetrand"
   ],
   "main": "src/nodejs/commands.js",
   "repository": {
