@@ -212,11 +212,11 @@ O(N) where N is the size of the hash.
 
 ```
 > redis-cli script load "$(cat /path/to/redis-commands/src/hgetrand.lua)"
-"99b0cb2e5000a1420061cc1c1faf1ff241eb9129"
+"0565bb477f320b323aaea486befebd3f9a079176"
 > redis-cli
 redis> HMSET myhash one "alpha" two "beta" three "charlie"
 OK
-redis> EVALSHA 99b0cb2e5000a1420061cc1c1faf1ff241eb9129 1 myhash
+redis> EVALSHA 0565bb477f320b323aaea486befebd3f9a079176 1 myhash
 "beta"
 ```
 
@@ -234,11 +234,11 @@ List size equals count or hash length when count is greater than hash length.
 
 ```
 > redis-cli script load "$(cat /path/to/redis-commands/src/hmgetrand.lua)"
-"b1a66b8bec2a37a0e96c3ff0021e725ffae316a5"
+"e8ac5ad65be171300c60f830dc6c974d524129bc"
 > redis-cli
 redis> HMSET myhash one "alpha" two "beta" three "charlie"
 OK
-redis> EVALSHA b1a66b8bec2a37a0e96c3ff0021e725ffae316a5 1 myhash 3
+redis> EVALSHA e8ac5ad65be171300c60f830dc6c974d524129bc 1 myhash 3
 1) "charlie"
 2) "beta"
 3) "alpha"

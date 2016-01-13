@@ -3,7 +3,7 @@ local insert = table.insert
 local remove = table.remove
 local rcall = redis.call
 
-math.randomseed(tonumber(tostring({}):match("0x(.*)$"),16))
+math.randomseed(tonumber(tostring({}):match('0x(.*)$'),16))
 
 local fields = rcall('hkeys', KEYS[1])
 
